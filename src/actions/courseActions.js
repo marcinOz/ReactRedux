@@ -5,10 +5,10 @@ import {ajaxCallError, beginAjaxCall} from "./ajaxStatusActions";
 export function loadCoursesSuccess(courses) {
     return {type: types.LOAD_COURSES_SUCCESS, courses};
 }
-function updateCourseSuccess(savedCourse) {
+export function updateCourseSuccess(savedCourse) {
     return {type: types.UPDATE_COURSE_SUCCESS, savedCourse};
 }
-function createCourseSuccess(savedCourse) {
+export function createCourseSuccess(savedCourse) {
     return {type: types.CREATE_COURSE_SUCCESS, savedCourse};
 }
 
