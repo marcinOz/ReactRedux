@@ -19,14 +19,14 @@ import ExpandMore from 'material-ui-icons/ExpandMore';
 import Avatar from 'material-ui/Avatar';
 import Grid from 'material-ui/Grid';
 import { blue } from 'material-ui/colors';
+import tlo from '../../res/tlo-320x240.jpg';
 
-const drawerWidth = 250;
+const drawerWidth = 320;
 const blueColor = blue[500];
 const styles = theme => ({
     root: {
         width: '100%',
         height: '100%',
-        marginTop: theme.spacing.unit * 3,
         zIndex: 1,
         overflow: 'hidden'
     },
@@ -49,11 +49,15 @@ const styles = theme => ({
     },
     drawerHeader: {
         padding: 15,
-        background: `linear-gradient(45deg, #FE6B8B 30%, ${blueColor} 90%)`
-        // height: 56,
-        // [theme.breakpoints.up('sm')]: {
-        //     height: 64
-        // }
+        backgroundImage: `url(${tlo})`,
+        background: `linear-gradient(45deg, #9C27B0 30%, ${blueColor} 90%)`
+    },
+    headerGrid: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    headerText: {
+        color: '#000'
     },
     content: {
         backgroundColor: theme.palette.background.default,
@@ -98,20 +102,22 @@ class App extends React.Component {
                     <AppBar className={classes.appBar}>
                         <Toolbar>
                             <Typography type="title" color="inherit" noWrap>
-                                Permanent drawer
+                                React & Redux with ES6
                             </Typography>
                         </Toolbar>
                     </AppBar>
-                    <Drawer type="permanent"
-                        classes={{
-                            paper: classes.drawerPaper
-                        }} >
+                    <Drawer type="permanent" classes={{paper: classes.drawerPaper}} >
                         <div className={classes.drawerHeader} >
-                            <Avatar className={classes.avatar} alt="Marcin Oziemski"
-                                src="https://avatars2.githubusercontent.com/u/6572599?v=4"/>
-                            <Typography type="title" >
-                                Marcin Oziemski
-                            </Typography>oziemski.marcin@gmail.com
+                            <Grid container className={classes.headerGrid}>
+                                <Grid item >
+                                    <Avatar className={classes.avatar} alt="Marcin Oziemski"
+                                        src="https://avatars2.githubusercontent.com/u/6572599?v=4"/>
+                                </Grid>
+                                <Grid item className={classes.headerText}>
+                                    <Typography type="title" className={classes.headerText}>Marcin Oziemski</Typography>
+                                    oziemski.marcin@gmail.com
+                                </Grid>
+                            </Grid>
                         </div>
                         <Divider />
                         <List>
