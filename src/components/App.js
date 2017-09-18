@@ -19,7 +19,6 @@ import ExpandMore from 'material-ui-icons/ExpandMore';
 import Avatar from 'material-ui/Avatar';
 import Grid from 'material-ui/Grid';
 import { blue } from 'material-ui/colors';
-import tlo from '../../res/tlo-320x240.jpg';
 
 const drawerWidth = 320;
 const blueColor = blue[500];
@@ -49,7 +48,7 @@ const styles = theme => ({
     },
     drawerHeader: {
         padding: 15,
-        backgroundImage: `url(${tlo})`,
+        backgroundImage: `url(${require('../../res/tlo-320x240.jpg')})`,
         background: `linear-gradient(45deg, #9C27B0 30%, ${blueColor} 90%)`
     },
     headerGrid: {
