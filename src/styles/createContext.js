@@ -2,12 +2,12 @@ import { create } from 'jss';
 import preset from 'jss-preset-default';
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import { createMuiTheme } from 'material-ui/styles';
-import { blue, pink } from 'material-ui/colors';
+import { indigo, pink } from 'material-ui/colors';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
+    primary: indigo,
     secondary: pink
   }
 });
