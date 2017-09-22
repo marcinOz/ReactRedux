@@ -20,13 +20,13 @@ const styles = theme => ({
 const Header = ({loading, classes}) => {
     return (
         <nav className={classes.row}>
-            <IndexLink to="/" activeClassName="active">
+            <IndexLink to="/pluralsight/home" activeClassName="active">
                 <Chip label="Home" className={classes.chip} />
             </IndexLink>
-            <IndexLink to="/courses" activeClassName="active">
+            <IndexLink to="/pluralsight/courses" activeClassName="active">
                 <Chip label="Courses" className={classes.chip} />
             </IndexLink>
-            <IndexLink to="/about" activeClassName="active">
+            <IndexLink to="/pluralsight/about" activeClassName="active">
                 <Chip label="About" className={classes.chip} />
             </IndexLink>
             {loading && <LoadingDots interval={100} dots={20}/>}

@@ -6,7 +6,8 @@ import './StarGame.css';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
-    fastar: {
+    star: {
+        display: 'inline-block',
         margin: '0.5em',
         fontSize: '24'
     },
@@ -15,19 +16,29 @@ const styles = theme => ({
         margin: '0.5em',
         textAlign: 'center',
         backgroundColor: '#ccc',
-        width: '24px',
+        width: '20px',
         borderRadius: '50%',
         cursor: 'pointer'
     },
     selected: {
         backgroundColor: '#eee',
         color: '#ddd',
-        cursor: 'not-allowed'
+        cursor: 'not-allowed',
+        display: 'inline-block',
+        margin: '0.5em',
+        textAlign: 'center',
+        width: '20px',
+        borderRadius: '50%'
     },
     used: {
         backgroundColor: '#aaddaa',
         color: '#99bb99',
-        cursor: 'not-allowed'
+        cursor: 'not-allowed',
+        display: 'inline-block',
+        margin: '0.5em',
+        textAlign: 'center',
+        width: '20px',
+        borderRadius: '50%'
     }
 });
 
@@ -51,8 +62,9 @@ let possibleCombinationSum = function(arr, n) {
 
 const Stars = (props) => {
     let stars = [];
+    const { classes } = props;
     for (let i=0; i<props.numberOfStars; i++) {
-        stars.push(<i key={i} className="fa fa-star"></i>);
+        stars.push(<p key={i} className={classes.star}><i className="fa fa-star"/></p>);
     }
     return (
         <div className="col-5">
@@ -67,12 +79,12 @@ const Button = (props) => {
         case true:
             button = <button className="btn btn-success"
                             onClick={props.accpetAnswer}>
-                        <i className="fa fa-check"></i>
+                        <i className="fa fa-check"/>
                     </button>;
             break;
         case false:
             button = <button className="btn btn-danger">
-                        <i className="fa fa-times"></i>
+                        <i className="fa fa-times"/>
                     </button>;
             break;
         default:
@@ -90,29 +102,34 @@ const Button = (props) => {
             <button className="btn btn-warning btn-sm"
                     disabled={props.redraws === 0}
                     onClick={props.redraw}>
-                <i className="fa fa-refresh"></i> {props.redraws}
+                <i className="fa fa-refresh"/> {props.redraws}
             </button>
         </div>
     );
 };
 
 const Answer = (props) => {
+    const { classes } = props;
     return (
         <div className="col-5">
             {props.selectdNumbers.map((number, i) => 
-                <span key={i} onClick={() => props.unselectNumber(number)}>{number}</span>
+                <span key={i}
+                      className={classes.span}
+                      onClick={() => props.unselectNumber(number)}>{number}</span>
             )}
         </div>
     );
 };
 
 const Numbers = (props) => {
+    const { classes } = props;
     const numberClassName = (number) => {
         if (props.usedNumbers.indexOf(number) >= 0) {
-            return 'used';
-        }
-        if (props.selectdNumbers.indexOf(number) >= 0) {
-            return 'selected';
+            return classes.used;
+        } else if (props.selectdNumbers.indexOf(number) >= 0) {
+            return classes.selected;
+        } else {
+            return classes.span;
         }
     };
     return (
@@ -235,23 +252,26 @@ class Game extends React.Component {
         return (
           <div className="container">
             <h3>Play Nine</h3>
+              Select sum of numbers that will represent numbers of stars.
             <hr />
             <div className="row">
-                <Stars numberOfStars={numberOfStars}/>
+                <Stars classes={classes}
+                       numberOfStars={numberOfStars}/>
                 <Button selectdNumbers={selectdNumbers}
                         redraws={redraws}
                         checkAnswer={this.checkAnswer}
                         accpetAnswer={this.accpetAnswer}
                         redraw={this.redraw}
                         answerIsCorrect={answerIsCorrect} />
-                <Answer selectdNumbers={selectdNumbers} 
+                <Answer classes={classes}
+                        selectdNumbers={selectdNumbers}
                         unselectNumber={this.unselectNumber} />
             </div>
             <br />
             {doneStatus ?
                 <DoneFrame doneStatus={doneStatus} 
                     resetGame={this.resetGame}/> :
-                <Numbers selectdNumbers={selectdNumbers}
+                <Numbers classes={classes} selectdNumbers={selectdNumbers}
                     selectNumber={this.selectNumber}
                     usedNumbers={usedNumbers} />
             }
