@@ -14,9 +14,10 @@ import ExpandMore from 'material-ui-icons/ExpandMore';
 import Avatar from 'material-ui/Avatar';
 import Grid from 'material-ui/Grid';
 import InboxIcon from 'material-ui-icons/Inbox';
+import HomeIcon from 'material-ui-icons/Home';
+import VideoGameIcon from 'material-ui-icons/VideogameAsset';
 import Typography from 'material-ui/Typography';
 import { blue } from 'material-ui/colors';
-import { IndexLink } from 'react-router';
 import DrawerItem from "./DrawerItem";
 
 const blueColor = blue[500];
@@ -81,6 +82,7 @@ class MyDrawer extends React.Component {
                 </div>
                 <Divider />
                 <List>
+                    <DrawerItem title="Home" icon={<HomeIcon />} path="/"/>
                     <ListItem button onClick={this.handleClick}>
                         <ListItemIcon>
                             <CodeIcon />
@@ -89,21 +91,19 @@ class MyDrawer extends React.Component {
                         {this.state.open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
-                        <IndexLink to="/" activeClassName="active">
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <WebIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Pluralsight Courses" />
-                            </ListItem>
-                        </IndexLink>
+                        <DrawerItem title="Pluralsight Courses"
+                                    icon={<WebIcon />}
+                                    path="/pluralsight/home"
+                                    classType={classes.nested}/>
+                        <DrawerItem title="Star Game"
+                                    icon={<VideoGameIcon />}
+                                    path="/starGame"
+                                    classType={classes.nested}/>
                     </Collapse>
                 </List>
                 <Divider />
                 <List>
-                    <IndexLink to="/starGame" activeClassName="active">
-                        <DrawerItem title="inbox" icon={<InboxIcon />}/>
-                    </IndexLink>
+                    <DrawerItem title="Other" icon={<InboxIcon />} path="/"/>
                 </List>
             </Drawer>
         );

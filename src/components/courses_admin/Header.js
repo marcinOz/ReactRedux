@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, IndexLink } from 'react-router';
-import LoadingDots from "./LoadingDots";
+import LoadingDots from "../common/LoadingDots";
 import { withStyles } from 'material-ui/styles';
 import Chip from 'material-ui/Chip';
 import blue from 'material-ui/colors/blue';
@@ -29,14 +29,13 @@ const Header = ({loading, classes}) => {
             <IndexLink to="/pluralsight/about" activeClassName="active">
                 <Chip label="About" className={classes.chip} />
             </IndexLink>
-            {loading && <LoadingDots interval={100} dots={20}/>}
+            {/*{loading && <LoadingDots interval={100} dots={20}/>}*/}
         </nav>
     );
 };
 
 Header.propTypes = {
-    classes: PropTypes.object.isRequired,
-    loading: PropTypes.bool.isRequired
+    classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Header);

@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import '../../../node_modules/font-awesome/css/font-awesome.min.css';
-import './StarGame.css';
+import ButtonUi from 'material-ui/Button';
+import StarIcon from 'material-ui-icons/Star';
+import RefreshIcon from 'material-ui-icons/Refresh';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
-    star: {
+    starIcon: {
         display: 'inline-block',
         margin: '0.5em',
         fontSize: '24'
     },
-    span: {
+    starsSpan: {
         display: 'inline-block',
         margin: '0.5em',
         textAlign: 'center',
@@ -64,7 +65,7 @@ const Stars = (props) => {
     let stars = [];
     const { classes } = props;
     for (let i=0; i<props.numberOfStars; i++) {
-        stars.push(<p key={i} className={classes.star}><i className="fa fa-star"/></p>);
+        stars.push(<p key={i} className={classes.starIcon}><StarIcon /></p>);
     }
     return (
         <div className="col-5">
@@ -77,33 +78,36 @@ const Button = (props) => {
     let button;
     switch(props.answerIsCorrect) {
         case true:
-            button = <button className="btn btn-success"
+            button = <ButtonUi raised
+                               style={{backgroundColor: '#27b541'}}
                             onClick={props.accpetAnswer}>
-                        <i className="fa fa-check"/>
-                    </button>;
+                        accept
+                    </ButtonUi>;
             break;
         case false:
-            button = <button className="btn btn-danger">
-                        <i className="fa fa-times"/>
-                    </button>;
+            button = <ButtonUi raised
+                               style={{backgroundColor: '#fc0000'}} >
+                        wrong
+                    </ButtonUi>;
             break;
         default:
-            button = <button className="btn" 
-                        onClick={props.checkAnswer}
-                        disabled={props.selectdNumbers.length === 0}>
+            button = <ButtonUi raised
+                              onClick={props.checkAnswer}
+                              disabled={props.selectdNumbers.length === 0} >
                         =
-                    </button>;
+                    </ButtonUi> ;
             break;
     }
     return (
         <div className="col-2 text-center" style={{padding: 5}}>
             {button}
             <br /><br />
-            <button className="btn btn-warning btn-sm"
+            <ButtonUi raised
+                      style={{backgroundColor: '#ffb600'}}
                     disabled={props.redraws === 0}
                     onClick={props.redraw}>
-                <i className="fa fa-refresh"/> {props.redraws}
-            </button>
+                <RefreshIcon /> {props.redraws}
+            </ButtonUi>
         </div>
     );
 };
@@ -114,7 +118,7 @@ const Answer = (props) => {
         <div className="col-5">
             {props.selectdNumbers.map((number, i) => 
                 <span key={i}
-                      className={classes.span}
+                      className={classes.starsSpan}
                       onClick={() => props.unselectNumber(number)}>{number}</span>
             )}
         </div>
@@ -129,7 +133,7 @@ const Numbers = (props) => {
         } else if (props.selectdNumbers.indexOf(number) >= 0) {
             return classes.selected;
         } else {
-            return classes.span;
+            return classes.starsSpan;
         }
     };
     return (
@@ -252,7 +256,8 @@ class Game extends React.Component {
         return (
           <div className="container">
             <h3>Play Nine</h3>
-              Select sum of numbers that will represent numbers of stars.
+              Select sum of numbers that will represent numbers of stars.<br />
+              Then click button with equal sign and again to confirm.
             <hr />
             <div className="row">
                 <Stars classes={classes}

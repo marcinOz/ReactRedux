@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from './common/Header';
 import MyDrawer from './drawer/MyDrawer';
 import {connect} from 'react-redux';
 import { withStyles } from 'material-ui/styles';
@@ -8,6 +7,7 @@ import withRoot from './withRoot';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
+import LoadingDots from "../components/common/LoadingDots";
 
 const drawerWidth = 320;
 const styles = theme => ({
@@ -55,14 +55,13 @@ class App extends React.Component {
                     <AppBar className={classes.appBar}>
                         <Toolbar>
                             <Typography type="title" color="inherit" noWrap>
-                                React & Redux with ES6
+                                {this.props.loading && <LoadingDots interval={100} dots={20}/>}
                             </Typography>
                         </Toolbar>
                     </AppBar>
                     <MyDrawer />
                     <main className={classes.content}>
                         <div className="container-fluid">
-                            <Header loading={this.props.loading}/>
                             {this.props.children}
                         </div>
                     </main>

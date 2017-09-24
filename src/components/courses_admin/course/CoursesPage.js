@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
-import * as courseActions from '../../actions/courseActions';
+import * as courseActions from '../../../actions/courseActions';
 import CourseList from './CourseList';
+import Header from '../Header';
 
 class CoursesPage extends React.Component {
     constructor(props, context) {
@@ -20,6 +21,7 @@ class CoursesPage extends React.Component {
         const {courses} = this.props;
         return (
             <div>
+                <Header />
                 <h1>Courses</h1>
                 <input type="submit"
                     value="Add Course"

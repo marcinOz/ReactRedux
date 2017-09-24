@@ -1,21 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { IndexLink } from 'react-router';
 import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 
 const DrawerItem = (props) => {
     return (
-        <ListItem button>
-            <ListItemIcon>
-                {props.icon}
-            </ListItemIcon>
-            <ListItemText primary={props.title} />
-        </ListItem>
+        <IndexLink to={props.path} activeClassName="active">
+            <ListItem button className={props.classType}>
+                <ListItemIcon>
+                    {props.icon}
+                </ListItemIcon>
+                <ListItemText primary={props.title} />
+            </ListItem>
+        </IndexLink>
     );
 };
 
 DrawerItem.propTypes = {
     title: PropTypes.string.isRequired,
-    icon: PropTypes.object
+    icon: PropTypes.object.isRequired,
+    path: PropTypes.string.isRequired,
+    classType: PropTypes.string
 };
 
 export default DrawerItem;
