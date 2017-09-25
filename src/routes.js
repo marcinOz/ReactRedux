@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import CoursesHomePage from './components/courses_admin/home/CoursesHomePage';
-import HomePage from './components/courses_admin/home/HomePage';
+import HomePage from './components/HomePage';
 import AboutPage from './components/courses_admin/about/AboutPage';
 import CoursesPage from './components/courses_admin/course/CoursesPage';
 import ManageCoursePage from "./components/courses_admin/course/ManageCoursePage";

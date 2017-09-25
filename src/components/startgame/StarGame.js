@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import ButtonUi from 'material-ui/Button';
 import StarIcon from 'material-ui-icons/Star';
 import RefreshIcon from 'material-ui-icons/Refresh';
 import { withStyles } from 'material-ui/styles';
 
-const styles = theme => ({
+const starStyles = theme => ({
     starIcon: {
         display: 'inline-block',
         margin: '0.5em',
@@ -155,10 +154,10 @@ const DoneFrame = (props) => {
     return (
         <div className="text-center">
             <h2>{props.doneStatus}</h2>
-            <button className="btn btn-secondary"
+            <ButtonUi raised
                     onClick={props.resetGame}>
                 Play Again
-            </button>
+            </ButtonUi>
         </div>
     );
 };
@@ -300,8 +299,4 @@ StarGame.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-    };
-}
-export default connect(mapStateToProps)(withStyles(styles)(StarGame));
+export default withStyles(starStyles)(StarGame);

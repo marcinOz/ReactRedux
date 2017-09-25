@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Chip from 'material-ui/Chip';
 import blue from 'material-ui/colors/blue';
 
-const styles = theme => ({
+const headerStyles = theme => ({
     chip: {
         margin: 1,
         color: blue[800]
@@ -38,4 +38,4 @@ Header.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(headerStyles)(Header);

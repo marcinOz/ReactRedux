@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Card, { CardContent } from 'material-ui/Card'
 import { withStyles } from 'material-ui/styles';
 
-const styles = theme => ({
+const homeStyles = theme => ({
     homeCard: {
         minHeight: 230,
         backgroundColor: '#eee'
@@ -42,7 +42,7 @@ class HomePage extends React.Component {
                 <Card className={classes.homeCard}>
                     <CardContent className={classes.homeCardContent}>
                         <div className={classes.homeDivIcon}>
-                            <img className={classes.homeImage} src={`${require('../../../../res/oziem_opt.png')}`} height="200px" width="200px"/>
+                            <img className={classes.homeImage} src={`${require('../../res/oziem_opt.png')}`} height="200px" width="200px"/>
                         </div>
                         <div className={classes.homeDivText}>
                             <div >
@@ -61,4 +61,4 @@ HomePage.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(HomePage);
+export default withStyles(homeStyles)(HomePage);

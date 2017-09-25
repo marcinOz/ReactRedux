@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
@@ -17,12 +16,10 @@ import InboxIcon from 'material-ui-icons/Inbox';
 import HomeIcon from 'material-ui-icons/Home';
 import VideoGameIcon from 'material-ui-icons/VideogameAsset';
 import Typography from 'material-ui/Typography';
-import { blue } from 'material-ui/colors';
 import DrawerItem from "./DrawerItem";
 
-const blueColor = blue[500];
 
-const styles = theme => ({
+const drawerStyles = theme => ({
     nested: {
         paddingLeft: theme.spacing.unit * 4
     },
@@ -38,8 +35,7 @@ const styles = theme => ({
     },
     drawerHeader: {
         padding: 15,
-        backgroundImage: `url(${require('../../../res/tlo-320x240.jpg')})`,
-        background: `linear-gradient(45deg, #9C27B0 30%, ${blueColor} 90%)`
+        backgroundImage: `url(${require('../../../res/tlo-320x240.jpg')})`
     },
     headerGrid: {
         justifyContent: 'center',
@@ -114,14 +110,4 @@ MyDrawer.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MyDrawer));
+export default withStyles(drawerStyles)(MyDrawer);

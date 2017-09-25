@@ -7,11 +7,10 @@ import withRoot from './withRoot';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import LoadingDots from "../components/common/LoadingDots";
 
 const drawerWidth = 320;
-const styles = theme => ({
-    root: {
+const appStyles = theme => ({
+    appRoot: {
         width: '100%',
         height: '100%',
         zIndex: 1,
@@ -29,7 +28,7 @@ const styles = theme => ({
         marginLeft: drawerWidth,
         order: 1
     },
-    content: {
+    appContent: {
         backgroundColor: theme.palette.background.default,
         width: '100%',
         padding: theme.spacing.unit * 3,
@@ -50,18 +49,18 @@ class App extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.root}>
+            <div className={classes.appRoot}>
                 <div className={classes.appFrame}>
                     <AppBar className={classes.appBar}>
                         <Toolbar>
                             <Typography type="title" color="inherit" noWrap>
-                                {this.props.loading && <LoadingDots interval={100} dots={20}/>}
+                                Toolbar
                             </Typography>
                         </Toolbar>
                     </AppBar>
                     <MyDrawer />
-                    <main className={classes.content}>
-                        <div className="container-fluid">
+                    <main className={classes.appContent}>
+                        <div>
                             {this.props.children}
                         </div>
                     </main>
@@ -83,4 +82,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(withRoot(withStyles(styles)(App)));
+export default connect(mapStateToProps)(withRoot(withStyles(appStyles)(App)));
