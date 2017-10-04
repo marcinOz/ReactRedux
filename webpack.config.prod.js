@@ -21,7 +21,7 @@ export default {
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.DefinePlugin(GLOBALS),
+        // new webpack.DefinePlugin(GLOBALS),
         new ExtractTextPlugin('style.css'),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin()

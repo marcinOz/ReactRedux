@@ -12,8 +12,9 @@ import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import Avatar from 'material-ui/Avatar';
 import Grid from 'material-ui/Grid';
-import InboxIcon from 'material-ui-icons/Inbox';
+import ExtensionIcon from 'material-ui-icons/Extension';
 import HomeIcon from 'material-ui-icons/Home';
+import PeopleIcon from 'material-ui-icons/People';
 import VideoGameIcon from 'material-ui-icons/VideogameAsset';
 import Typography from 'material-ui/Typography';
 import DrawerItem from "./DrawerItem";
@@ -42,22 +43,80 @@ const drawerStyles = theme => ({
         alignItems: 'center'
     },
     headerText: {
-        color: '#000'
+        color: '#fff'
     }
 });
+
+const menu = [
+    {
+        title: "Home",
+        icon: <HomeIcon />,
+        path: "/"
+    },
+    {
+        title: "Private Projects",
+        icon: <ExtensionIcon />,
+        path: "/other"
+    }
+];
+
+const demos = [
+    {
+        title: "Pluralsight Courses",
+        icon: <WebIcon />,
+        path: "/pluralsight/home"
+    },
+    {
+        title: "Star Game",
+        icon: <VideoGameIcon />,
+        path: "/starGame"
+    },
+    {
+        title: "Github Users",
+        icon: <PeopleIcon />,
+        path: "/githubusers"
+    }
+];
 
 class MyDrawer extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
-            open: true
+            open: true,
+            clicked: '',
+            menuItems: this.makeMenu(menu[0].title, menu),
+            demoItems: this.makeMenu('', demos, true)
         };
         this.handleClick = this.handleClick.bind(this);
+        this.onMenuClick = this.onMenuClick.bind(this);
+        this.makeMenu = this.makeMenu.bind(this);
     }
 
     handleClick() {
         this.setState({ open: !this.state.open });
+    }
+
+    makeMenu(item, list, nested) {
+        let items = [];
+        for (let i=0; i<list.length; i++) {
+            let fun = () => this.onMenuClick(list[i].title);
+            items.push(<DrawerItem key={i}
+                            title={list[i].title}
+                            icon={list[i].icon}
+                            path={list[i].path}
+                            disabled={item === list[i].title}
+                            onClick={fun}
+                            classType={nested ? this.props.classes.nested : ''}/>);
+        }
+        return items;
+    }
+    
+    onMenuClick(item) {
+        this.setState({ 
+            menuItems: this.makeMenu(item, menu),
+            demoItems: this.makeMenu(item, demos, true)
+        });
     }
 
     render() {
@@ -78,7 +137,8 @@ class MyDrawer extends React.Component {
                 </div>
                 <Divider />
                 <List>
-                    <DrawerItem title="Home" icon={<HomeIcon />} path="/"/>
+                    {this.state.menuItems}
+                    <Divider />
                     <ListItem button onClick={this.handleClick}>
                         <ListItemIcon>
                             <CodeIcon />
@@ -87,19 +147,8 @@ class MyDrawer extends React.Component {
                         {this.state.open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
-                        <DrawerItem title="Pluralsight Courses"
-                                    icon={<WebIcon />}
-                                    path="/pluralsight/home"
-                                    classType={classes.nested}/>
-                        <DrawerItem title="Star Game"
-                                    icon={<VideoGameIcon />}
-                                    path="/starGame"
-                                    classType={classes.nested}/>
+                        {this.state.demoItems}
                     </Collapse>
-                </List>
-                <Divider />
-                <List>
-                    <DrawerItem title="Other" icon={<InboxIcon />} path="/"/>
                 </List>
             </Drawer>
         );

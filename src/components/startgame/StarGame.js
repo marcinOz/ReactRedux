@@ -5,7 +5,7 @@ import StarIcon from 'material-ui-icons/Star';
 import RefreshIcon from 'material-ui-icons/Refresh';
 import { withStyles } from 'material-ui/styles';
 
-const starStyles = theme => ({
+const starStyles = {
     starIcon: {
         display: 'inline-block',
         margin: '0.5em',
@@ -40,7 +40,7 @@ const starStyles = theme => ({
         width: '20px',
         borderRadius: '50%'
     }
-});
+};
 
 let possibleCombinationSum = function(arr, n) {
     if (arr.indexOf(n) >= 0) { return true; }

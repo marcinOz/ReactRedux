@@ -38,6 +38,9 @@ const appStyles = theme => ({
             height: 'calc(100% - 64px)',
             marginTop: 64
         }
+    },
+    drawer: {
+        height: '100%'
     }
 });
 
@@ -54,11 +57,11 @@ class App extends React.Component {
                     <AppBar className={classes.appBar}>
                         <Toolbar>
                             <Typography type="title" color="inherit" noWrap>
-                                Toolbar
+                                Example, Beispiel, 例..
                             </Typography>
                         </Toolbar>
                     </AppBar>
-                    <MyDrawer />
+                    <MyDrawer className={classes.drawer}/>
                     <main className={classes.appContent}>
                         <div>
                             {this.props.children}
